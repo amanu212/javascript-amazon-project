@@ -79,6 +79,14 @@ addToCart.forEach((button) => {
     })
     }
 
+    let cartQuantity = 0;
+
+    cart.forEach((item) => {
+      cartQuantity += item.quantity;
+    })
+    const cartQuantityIdentifier = document.querySelector('.js-cart-quantity')
+    cartQuantityIdentifier.innerHTML = cartQuantity;
+    console.log(cartQuantity);
     console.log(cart);
   })
   
