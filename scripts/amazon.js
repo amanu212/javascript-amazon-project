@@ -1,4 +1,12 @@
+const cost = JSON.parse(localStorage.getItem('cart')) || [];
 let productsHTML = '';
+
+  const cartQuantityTeller = () => {
+    const retrievedQuantity = JSON.parse(localStorage.getItem('cartQuantity'));
+    document.querySelector('.js-cart-quantity').innerHTML = retrievedQuantity;
+  }
+
+  cartQuantityTeller();
 
 products.forEach((product) => {
         productsHTML += `
@@ -84,11 +92,14 @@ addToCart.forEach((button) => {
     cart.forEach((item) => {
       cartQuantity += item.quantity;
     })
+    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('cartQuantity', JSON.stringify(cartQuantity)); 
+    console.log(cart);
     const cartQuantityIdentifier = document.querySelector('.js-cart-quantity')
     cartQuantityIdentifier.innerHTML = cartQuantity;
-    console.log(cartQuantity);
-    console.log(cart);
+    return cartQuantityIdentifier;
   })
   
 });
+
 
