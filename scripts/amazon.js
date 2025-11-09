@@ -1,4 +1,3 @@
-const cost = JSON.parse(localStorage.getItem('cart')) || [];
 let productsHTML = '';
 
   const cartQuantityTeller = () => {
@@ -33,7 +32,7 @@ products.forEach((product) => {
             </div>
 
             <div class="product-quantity-container">
-              <select>
+              <select class="js-quantity-selector-${product.id}">
                 <option selected value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -69,6 +68,8 @@ const addToCart = document.querySelectorAll('.js-add-to-cart-button');
 addToCart.forEach((button) => {
   button.addEventListener('click', () => {
     const productId = button.dataset.productId
+    const productQuantity = document.querySelector(`.js-quantity-selector-${productId}`);
+    let selectedQuantity = Number(productQuantity.value);
     let matchingItem;
 
     cart.forEach((item) => {
@@ -78,25 +79,26 @@ addToCart.forEach((button) => {
     })
 
     if(matchingItem) {
-      matchingItem.quantity += 1;
+      matchingItem.quantity += selectedQuantity;
     }
     else { 
       cart.push({
       productId: productId,
-      quantity: 1
+      quantity: selectedQuantity
     })
     }
 
-    let cartQuantity = 0;
 
+
+    let totalQuantity = 0;
     cart.forEach((item) => {
-      cartQuantity += item.quantity;
+      totalQuantity += item.quantity;
     })
     localStorage.setItem('cart', JSON.stringify(cart));
-    localStorage.setItem('cartQuantity', JSON.stringify(cartQuantity)); 
+    localStorage.setItem('cartQuantity', JSON.stringify(totalQuantity)); 
     console.log(cart);
     const cartQuantityIdentifier = document.querySelector('.js-cart-quantity')
-    cartQuantityIdentifier.innerHTML = cartQuantity;
+    cartQuantityIdentifier.innerHTML = totalQuantity;
     return cartQuantityIdentifier;
   })
   
