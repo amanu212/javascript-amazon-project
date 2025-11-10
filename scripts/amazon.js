@@ -89,6 +89,7 @@ addToCart.forEach((button) => {
 
     if(matchingItem) {
       matchingItem.quantity += selectedQuantity;
+      matchingItem.quantity += selectedQuantity;
     }
     else { 
       cart.push({
@@ -98,13 +99,13 @@ addToCart.forEach((button) => {
     }
     let cartQuantity = 0;
     cart.forEach((item) => {
-      cartQuantity += item.quantity;
+      totalQuantity += item.quantity;
     })
     localStorage.setItem('cart', JSON.stringify(cart));
-    localStorage.setItem('cartQuantity', JSON.stringify(cartQuantity)); 
+    localStorage.setItem('cartQuantity', JSON.stringify(totalQuantity)); 
     console.log(cart);
     const cartQuantityIdentifier = document.querySelector('.js-cart-quantity')
-    cartQuantityIdentifier.innerHTML = cartQuantity;
+    cartQuantityIdentifier.innerHTML = totalQuantity;
     return cartQuantityIdentifier;
   })
   
