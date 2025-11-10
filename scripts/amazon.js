@@ -1,4 +1,4 @@
-import {cart as Mycart} from '../data/cart.js';
+import {cart} from '../data/cart.js';
 let productsHTML = '';
 
   const cartQuantityTeller = () => {
@@ -89,7 +89,6 @@ addToCart.forEach((button) => {
 
     if(matchingItem) {
       matchingItem.quantity += selectedQuantity;
-      matchingItem.quantity += selectedQuantity;
     }
     else { 
       cart.push({
@@ -97,7 +96,7 @@ addToCart.forEach((button) => {
       quantity: selectedQuantity
     })
     }
-    let cartQuantity = 0;
+    let totalQuantity = 0;
     cart.forEach((item) => {
       totalQuantity += item.quantity;
     })
