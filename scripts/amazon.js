@@ -1,4 +1,4 @@
-const cost = JSON.parse(localStorage.getItem('cart')) || [];
+import {cart as Mycart} from '../data/cart.js';
 let productsHTML = '';
 
   const cartQuantityTeller = () => {
@@ -33,7 +33,7 @@ products.forEach((product) => {
             </div>
 
             <div class="product-quantity-container">
-              <select>
+              <select class="js-item-quantity-selector-${product.id}">
                 <option selected value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -49,7 +49,7 @@ products.forEach((product) => {
 
             <div class="product-spacer"></div>
 
-            <div class="added-to-cart js-added-to-cart">
+            <div class="added-to-cart js-added-to-cart-${product.id}">
               <img src="images/icons/checkmark.png">
               Added
             </div>
@@ -68,8 +68,18 @@ const addToCart = document.querySelectorAll('.js-add-to-cart-button');
 
 addToCart.forEach((button) => {
   button.addEventListener('click', () => {
-    const productId = button.dataset.productId
+    const productId = button.dataset.productId;
+    const quantitySelector = document.querySelector(`.js-item-quantity-selector-${productId}`);
+    let selectedQuantity= Number(quantitySelector.value);
     let matchingItem;
+
+    const addedToCart = document.querySelector(`.js-added-to-cart-${productId}`)
+    addedToCart.style.opacity = '1';
+
+    setTimeout(() => {
+      addedToCart.style.opacity = '0';
+    }, 1000);
+
 
     cart.forEach((item) => {
       if(productId === item.productId) {
@@ -78,17 +88,15 @@ addToCart.forEach((button) => {
     })
 
     if(matchingItem) {
-      matchingItem.quantity += 1;
+      matchingItem.quantity += selectedQuantity;
     }
     else { 
       cart.push({
       productId: productId,
-      quantity: 1
+      quantity: selectedQuantity
     })
     }
-
     let cartQuantity = 0;
-
     cart.forEach((item) => {
       cartQuantity += item.quantity;
     })
