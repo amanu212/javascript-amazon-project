@@ -1,9 +1,10 @@
-import {cart} from '../data/cart.js';
+import {cart, cartAdd} from '../data/cart.js';
 import {products} from '../data/products.js';
+
 let productsHTML = '';
 
   const cartQuantityTeller = () => {
-    const retrievedQuantity = JSON.parse(localStorage.getItem('cartQuantity'));
+    const retrievedQuantity = JSON.parse(localStorage.getItem('cartQuantity')) || 0;
     document.querySelector('.js-cart-quantity').innerHTML = retrievedQuantity;
   }
 
@@ -67,13 +68,32 @@ productGrid.innerHTML = productsHTML;
 
 const addToCart = document.querySelectorAll('.js-add-to-cart-button');
 
+
+
+
+  const cartShow = () => {
+
+    let totalQuantity = 0;
+    cart.forEach((item) => {
+    totalQuantity += item.quantity;
+    })
+    
+    localStorage.setItem('cartQuantity', JSON.stringify(totalQuantity)); 
+    const cartQuantityIdentifier = document.querySelector('.js-cart-quantity')
+    cartQuantityIdentifier.innerHTML = totalQuantity;
+
+    }
+
+
+
+
 addToCart.forEach((button) => {
   button.addEventListener('click', () => {
     const productId = button.dataset.productId;
-    const quantitySelector = document.querySelector(`.js-item-quantity-selector-${productId}`);
-    let selectedQuantity= Number(quantitySelector.value);
-    let matchingItem;
 
+    cartAdd(productId);
+    cartShow();
+    
     const addedToCart = document.querySelector(`.js-added-to-cart-${productId}`)
     addedToCart.style.opacity = '1';
 
@@ -81,32 +101,7 @@ addToCart.forEach((button) => {
       addedToCart.style.opacity = '0';
     }, 1000);
 
-
-    cart.forEach((item) => {
-      if(productId === item.productId) {
-         matchingItem = item;
-      }
-    })
-
-    if(matchingItem) {
-      matchingItem.quantity += selectedQuantity;
-    }
-    else { 
-      cart.push({
-      productId: productId,
-      quantity: selectedQuantity
-    })
-    }
-    let totalQuantity = 0;
-    cart.forEach((item) => {
-      totalQuantity += item.quantity;
-    })
-    localStorage.setItem('cart', JSON.stringify(cart));
-    localStorage.setItem('cartQuantity', JSON.stringify(totalQuantity)); 
     console.log(cart);
-    const cartQuantityIdentifier = document.querySelector('.js-cart-quantity')
-    cartQuantityIdentifier.innerHTML = totalQuantity;
-    return cartQuantityIdentifier;
   })
   
 });
