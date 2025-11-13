@@ -71,7 +71,7 @@ const addToCart = document.querySelectorAll('.js-add-to-cart-button');
 
 
 
-  const cartShow = () => {
+export const cartShow = () => {
 
     let totalQuantity = 0;
     cart.forEach((item) => {
@@ -81,7 +81,6 @@ const addToCart = document.querySelectorAll('.js-add-to-cart-button');
     localStorage.setItem('cartQuantity', JSON.stringify(totalQuantity)); 
     const cartQuantityIdentifier = document.querySelector('.js-cart-quantity')
     cartQuantityIdentifier.innerHTML = totalQuantity;
-
     }
 
 
@@ -103,3 +102,5 @@ addToCart.forEach((button) => {
   })
   
 });
+
+cartShow();

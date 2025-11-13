@@ -1,4 +1,4 @@
-export const cart = JSON.parse(localStorage.getItem('cart')) || [
+export let cart = JSON.parse(localStorage.getItem('cart')) || [
 
 ];
 
@@ -25,3 +25,30 @@ export const cartAdd = (productId) => {
 
     localStorage.setItem('cart', JSON.stringify(cart));
   }
+
+
+export const deleteList = (deleteId) => {
+    let deleteOrder = 0;
+        cart.forEach((item, index) => {
+          if(item.productId === deleteId) {
+            deleteOrder = index;
+          }
+        })
+        cart.splice(deleteOrder, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        console.log(cart)
+  }
+
+export const deleteList2 = (deleteId) => {
+    const newCart = []
+
+    cart.forEach((item) => {
+
+      if(item.productId !== deleteId) {
+        newCart.push(item);
+      }
+    })
+  
+  cart = newCart;
+  localStorage.setItem('cart', JSON.stringify(cart));
+}

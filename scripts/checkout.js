@@ -1,11 +1,25 @@
-import { cart } from '../data/cart.js';
+import { cart, deleteList2 } from '../data/cart.js';
 import { products } from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
+
+function attachEventListener() {
+const deleteSelector = document.querySelectorAll('.js-delete-quantity')
+deleteSelector.forEach((span) => {
+  span.addEventListener('click', () => {
+    const deleteId = span.dataset.matchingId;
+
+    deleteList2(deleteId);
+    renderCheckOut();
+    attachEventListener();
+  })
+
+})
+}
+
+function renderCheckOut() {
+
 let checkoutHTML = '';
-
-
-
-cart.forEach((cartItem) =>{
+  cart.forEach((cartItem) => {
 
   const productId = cartItem.productId;
 
@@ -18,7 +32,6 @@ cart.forEach((cartItem) =>{
     }
   })
 
-  console.log(matchingProduct);
   checkoutHTML += `
     <div class="cart-item-container">
             <div class="delivery-date">
@@ -43,7 +56,8 @@ cart.forEach((cartItem) =>{
                   <span class="update-quantity-link link-primary">
                     Update
                   </span>
-                  <span class="delete-quantity-link link-primary">
+                  <span class="delete-quantity-link link-primary js-delete-quantity"
+                  data-matching-id="${matchingProduct.id}">
                     Delete
                   </span>
                 </div>
@@ -97,8 +111,15 @@ cart.forEach((cartItem) =>{
           </div>
   `
 
+
 })
 
 const selectedProducts = document.querySelector('.js-order-summary')
 selectedProducts.innerHTML = checkoutHTML;
-console.log(checkoutHTML);
+
+//Attach Listeners to the New elements
+attachEventListener();
+}
+
+renderCheckOut();
+
