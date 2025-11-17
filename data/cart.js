@@ -1,4 +1,3 @@
-import { deliveryOptions } from "../data/deliveryOptions.js";
 export let cart = JSON.parse(localStorage.getItem('cart'));
 
 if(!cart) {
@@ -32,7 +31,8 @@ export const cartAdd = (productId) => {
     else { 
       cart.push({
       productId: productId,
-      quantity: selectedQuantity
+      quantity: selectedQuantity,
+      deliveryOptionId: '1'
     })
     }
 
