@@ -1,6 +1,19 @@
-export let cart = JSON.parse(localStorage.getItem('cart')) || [
+import { deliveryOptions } from "../data/deliveryOptions.js";
+export let cart = JSON.parse(localStorage.getItem('cart'));
 
-];
+if(!cart) {
+  cart = [{
+    productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+    quantity: 2,
+    deliveryOptionId: '1'
+  },
+
+  {
+    productId: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
+    quantity: 1,
+    deliveryOptionId: '2'
+  }]
+}
 
 export const cartAdd = (productId) => {
   const quantitySelector = document.querySelector(`.js-item-quantity-selector-${productId}`);
@@ -27,10 +40,11 @@ export const cartAdd = (productId) => {
   }
 
 
-export const deleteList = (deleteId) => {
+
+export const deleteList = (idDelete) => {
     let deleteOrder = 0;
         cart.forEach((item, index) => {
-          if(item.productId === deleteId) {
+          if(item.productId === idDelete) {
             deleteOrder = index;
           }
         })
@@ -39,12 +53,12 @@ export const deleteList = (deleteId) => {
         console.log(cart)
   }
 
-export const deleteList2 = (deleteId) => {
+export const deleteList2 = (idDelete) => {
     const newCart = []
 
     cart.forEach((item) => {
 
-      if(item.productId !== deleteId) {
+      if(item.productId !== idDelete) {
         newCart.push(item);
       }
     })
