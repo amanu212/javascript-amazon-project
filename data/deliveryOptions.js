@@ -15,9 +15,9 @@ export const deliveryOptions = [{
   deliveryDays: 1,
   priceCents: 999  
 
-}
-]
+},
 
-export const deliveryOptionCost = () => { 
+{
   
 }
+]
