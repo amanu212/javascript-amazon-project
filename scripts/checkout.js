@@ -94,7 +94,6 @@ const deliveryDateSelector = () => {
         if(item.productId === inputId) {
           item.deliveryOptionId = deliveryId;
         }
-
       })
 
 
