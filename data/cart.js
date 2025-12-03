@@ -6,7 +6,7 @@ if(!cart) {
     quantity: 1,
     deliveryOptionId: '1'
   },
-
+    
   {
     productId: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
     quantity: 1,
@@ -39,8 +39,6 @@ export const cartAdd = (productId) => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }
 
-
-
 export const deleteList = (idDelete) => {
     let deleteOrder = 0;
         cart.forEach((item, index) => {
@@ -65,5 +63,5 @@ export const deleteList2 = (idDelete) => {
   
   cart = newCart;
   localStorage.setItem('cart', JSON.stringify(cart));
-}
+  }
 

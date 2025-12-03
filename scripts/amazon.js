@@ -63,6 +63,9 @@ products.forEach((product) => {
           </div>`
 })
 
+
+export { productsHTML };
+
 const productGrid = document.querySelector('.js-products-grid');
 productGrid.innerHTML = productsHTML;
 
@@ -82,6 +85,7 @@ export const cartShow = () => {
     const cartQuantityIdentifier = document.querySelector('.js-cart-quantity')
     cartQuantityIdentifier.innerHTML = totalQuantity;
     }
+    
 
 
 addToCart.forEach((button) => {

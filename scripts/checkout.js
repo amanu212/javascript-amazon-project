@@ -9,7 +9,7 @@ hello();
 
 const today = dayjs();
 
-function attachDeleteEventListener() {
+export function attachDeleteEventListener() {
 const deleteSelector = document.querySelectorAll('.js-delete-quantity')
 deleteSelector.forEach((span) => {
   span.addEventListener('click', () => {
@@ -314,4 +314,5 @@ const orderSummaryHTML = document.querySelector('.js-payment-summary');
   `;
 
 }
+
 renderCheckOut();
