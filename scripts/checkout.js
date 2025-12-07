@@ -85,7 +85,6 @@ const deliveryDateSelector = () => {
       const inputId = input.dataset.productId;
       const deliveryId = input.dataset.deliveryId;
       
-      const dateAnnouncer = document.querySelector(`.js-selected-delivery-date-${inputId}`)
       console.log(inputId);
       console.log(deliveryId);
       
