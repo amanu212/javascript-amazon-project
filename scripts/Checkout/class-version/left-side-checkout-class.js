@@ -1,12 +1,12 @@
-import { cart } from '../../data/cart.js';
-import { deleteList2 } from '../../data/cart.js';
-import { products } from '../../data/products.js';
-import { deliveryOptions } from '../../data/deliveryOptions.js';
-import { formatCurrency } from '../utils/money.js';
+import '../../../data/cart-class.js';
+import {cart} from '../../../data/cart-class.js';
+import { products } from '../../../data/products.js';
+import { deliveryOptions } from '../../../data/deliveryOptions.js';
+import { formatCurrency } from '../../utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
 //import the order summary code from the left so that renderCheckOut recognizes it upon when executed
-import { orderSummaryRender } from './right-side-checkout.js';
+import { orderSummaryRender } from './right-side-checkout-class.js';
 
 const today = dayjs();
 
@@ -16,7 +16,7 @@ deleteSelector.forEach((span) => {
   span.addEventListener('click', () => {
     const idDelete = span.dataset.deleteId;
 
-    deleteList2(idDelete);
+    cart.deleteList2(idDelete);
     renderCheckOut();
   })
 })
@@ -28,7 +28,7 @@ const attachSaveEventListener = (idUpdate) => {
       const quantityInput = document.querySelector(`.js-quantity-input-${idUpdate}`);
       let updatedQuantity = Number(quantityInput.value);
 
-      cart.forEach((item) => {
+      cart.cartItems.forEach((item) => {
 
         if(item.productId === idUpdate) {
           item.quantity = updatedQuantity;
@@ -36,7 +36,7 @@ const attachSaveEventListener = (idUpdate) => {
       
 
       })
-      localStorage.setItem('cart', JSON.stringify(cart));
+      localStorage.setItem('cart-class', JSON.stringify(cart.cartItems));
 
       renderCheckOut(); 
 })
@@ -71,7 +71,7 @@ const deliveryDateSelector = () => {
       console.log(inputId);
       console.log(deliveryId);
       
-      cart.forEach((item) => {
+      cart.cartItems.forEach((item) => {
         
         if(item.productId === inputId) {
           item.deliveryOptionId = deliveryId;
@@ -79,7 +79,7 @@ const deliveryDateSelector = () => {
       })
 
 
-      localStorage.setItem('cart', JSON.stringify(cart));
+      localStorage.setItem('cart-class', JSON.stringify(cart.cartItems));
       renderCheckOut();
     })
   })
@@ -89,7 +89,7 @@ const deliveryDateSelector = () => {
 function renderCheckOut() {
 
 let checkoutHTML = '';
-  cart.forEach((cartItem) => {
+  cart.cartItems.forEach((cartItem) => {
 
   const productId = cartItem.productId;
 
@@ -213,7 +213,7 @@ attachDeleteEventListener();
 const checkOutAmount = document.querySelector('.js-return-to-home-quantity');
 let checkOutQuantity = 0;
 
-cart.forEach((item) => {
+cart.cartItems.forEach((item) => {
   checkOutQuantity += item.quantity;
 })
 

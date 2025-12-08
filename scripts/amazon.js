@@ -1,5 +1,5 @@
-import {cart, cartAdd} from '../data/cart.js';
-import {products} from '../data/products.js';
+import { cart } from '../data/cart-oop.js';
+import { products } from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
 let productsHTML = '';
 
@@ -77,7 +77,7 @@ const addToCart = document.querySelectorAll('.js-add-to-cart-button');
 export const cartShow = () => {
 
     let totalQuantity = 0;
-    cart.forEach((item) => {
+    cart.cartItems.forEach((item) => {
     totalQuantity += item.quantity;
     })
     
@@ -92,7 +92,7 @@ addToCart.forEach((button) => {
   button.addEventListener('click', () => {
     const productId = button.dataset.productId;
 
-    cartAdd(productId);
+    cart.cartAdd(productId);
     cartShow();
     
     const addedToCart = document.querySelector(`.js-added-to-cart-${productId}`)

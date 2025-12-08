@@ -65,3 +65,4 @@ export const deleteList2 = (idDelete) => {
   localStorage.setItem('cart', JSON.stringify(cart));
   }
 
+  console.log(cart)

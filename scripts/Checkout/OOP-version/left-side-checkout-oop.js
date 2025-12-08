@@ -1,7 +1,8 @@
-import { cart } from '../../data/cart-oop.js';
-import { products } from '../../data/products.js';
-import { deliveryOptions } from '../../data/deliveryOptions.js';
-import { formatCurrency } from '../utils/money.js';
+import '../../../data/cart-oop.js';
+import {cart} from '../../../data/cart-oop.js'
+import { products } from '../../../data/products.js';
+import { deliveryOptions } from '../../../data/deliveryOptions.js';
+import { formatCurrency } from '../../utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
 //import the order summary code from the left so that renderCheckOut recognizes it upon when executed

@@ -1,3 +1,3 @@
-import './Checkout/left-side-checkout-oop.js';
+import './Checkout/OOP-version/left-side-checkout-oop.js';
 
 
