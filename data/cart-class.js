@@ -2,9 +2,9 @@ class Cart {
   constructor(key) {
     this.localStorageKey = key;
     this.cartItems = JSON.parse(localStorage.getItem(key));
-    this.cartLoader;
+    this.cartLoader()
   }
-      localStorageKey = undefined;
+      
     
     cartLoader() {
       if(!this.cartItems) {

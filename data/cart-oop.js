@@ -73,8 +73,8 @@ function Cart(localStorageKey) {
   cart.cartLoader();
   return cart;
 }
-  export const cart = Cart('cart-oop')
-  console.log(cart.cartItems)
-  console.log(cart)
-
+  export const cart = Cart('cart-oop');
+  export const businessCart = Cart('business-cart')
+  console.log(cart);
+  console.log(businessCart);
 
