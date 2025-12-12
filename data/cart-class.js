@@ -72,10 +72,9 @@ class Cart {
     this.cartItems = newCart;
     localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems));
     }
-
 }
   
 
 
   export const cart =new Cart('cart-class');
-  console.log(cart.cartItems)
+  console.log(cart)
