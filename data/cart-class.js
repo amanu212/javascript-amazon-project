@@ -77,4 +77,4 @@ class Cart {
 
 
   export const cart =new Cart('cart-class');
-  console.log(cart)
+

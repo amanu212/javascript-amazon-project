@@ -1,6 +1,6 @@
 
 import { cart } from '../data/cart-class.js';
-import { products } from '../data/products.js';
+import { productsClass } from '../data/products.js';
 
 import { formatCurrency } from './utils/money.js';
 let productsHTML = '';
@@ -12,7 +12,7 @@ let productsHTML = '';
 
   cartQuantityTeller();
 
-products.forEach((product) => {
+productsClass.forEach((product) => {
         productsHTML += `
           <div class="product-container">
             <div class="product-image-container">
@@ -51,6 +51,7 @@ products.forEach((product) => {
               </select>
             </div>
 
+             ${product.extraInfoHTML()}
             <div class="product-spacer"></div>
 
             <div class="added-to-cart js-added-to-cart-${product.id}">

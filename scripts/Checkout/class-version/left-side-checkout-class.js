@@ -1,6 +1,6 @@
 import '../../../data/cart-class.js';
 import {cart} from '../../../data/cart-class.js';
-import { products } from '../../../data/products.js';
+import { productsClass } from '../../../data/products.js';
 import { deliveryOptions } from '../../../data/deliveryOptions.js';
 import { formatCurrency } from '../../utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
@@ -109,7 +109,7 @@ let checkoutHTML = '';
 
   const dateString = today.add(deliveryOption.deliveryDays, 'days').format('dddd, MMMM D');
 
-  products.forEach((product) => {
+  productsClass.forEach((product) => {
 
     if(productId === product.id) {
       matchingProduct = product;
