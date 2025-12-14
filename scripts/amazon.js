@@ -3,6 +3,8 @@ import { cart } from '../data/cart-class.js';
 import { productsClass } from '../data/products.js';
 
 import { formatCurrency } from './utils/money.js';
+import '../data/backend-practice.js';
+
 let productsHTML = '';
 
   const cartQuantityTeller = () => {
