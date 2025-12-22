@@ -1,5 +1,5 @@
 import '../data/products.js';
-import { cart, cartAdd } from '../data/cart.js';
+import { cart } from '../data/cart-class.js';
 import { products, loadProducts } from '../data/products.js';
 import '../data/backend-practice.js';
 
@@ -83,7 +83,7 @@ function renderProductsGrid() {
   const cartShow = () => {
 
       let totalQuantity = 0;
-      cart.forEach((item) => {
+      cart.cartItems.forEach((item) => {
       totalQuantity += item.quantity;
       })
       
@@ -98,7 +98,7 @@ function renderProductsGrid() {
     button.addEventListener('click', () => {
       const productId = button.dataset.productId;
 
-      cartAdd(productId);
+      cart.cartAdd(productId);
       cartShow();
       
       const addedToCart = document.querySelector(`.js-added-to-cart-${productId}`)

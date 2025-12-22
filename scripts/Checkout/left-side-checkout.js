@@ -1,6 +1,6 @@
-import { cart } from '../../data/cart.js';
+import { cart, loadCart } from '../../data/cart.js';
 import { deleteList2 } from '../../data/cart.js';
-import { products } from '../../data/products.js';
+import { products, loadProducts } from '../../data/products.js';
 import { deliveryOptions } from '../../data/deliveryOptions.js';
 import { formatCurrency } from '../utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
@@ -8,9 +8,14 @@ import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 //import the order summary code from the left so that renderCheckOut recognizes it upon when executed
 import { orderSummaryRender } from './right-side-checkout.js';
 
+loadProducts(() => {
+  loadCart(renderLeftSideCheckout);
+  });
+
+function renderLeftSideCheckout() {
 const today = dayjs();
 
-export function attachDeleteEventListener() {
+function attachDeleteEventListener() {
 const deleteSelector = document.querySelectorAll('.js-delete-quantity')
 deleteSelector.forEach((span) => {
   span.addEventListener('click', () => {
@@ -227,3 +232,4 @@ orderSummaryRender();
 }
 
 renderCheckOut();
+}

@@ -1,5 +1,5 @@
 import '../../../data/cart-class.js';
-import {cart} from '../../../data/cart-class.js';
+import {cart } from '../../../data/cart-class.js';
 import { loadProducts, products } from '../../../data/products.js';
 import { deliveryOptions } from '../../../data/deliveryOptions.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
@@ -7,7 +7,51 @@ import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 //import the order summary code from the left so that renderCheckOut recognizes it upon when executed
 import { orderSummaryRender } from './right-side-checkout-class.js';
 
-loadProducts(renderLeftSideCheckout);
+
+Promise.all([
+  new Promise((resolve) => {
+    loadProducts(() => {
+      resolve();
+    });
+  }),
+  new Promise((resolve) => {
+    cart.loadCart(() => {
+      resolve();
+    })
+  })
+]).then(() => {
+    renderLeftSideCheckout();
+  });
+
+
+/*
+new Promise((resolve) => {
+  loadProducts(() => {
+    resolve();
+  });
+
+  }).then((
+  new Promise((resolve) => {
+    cart.loadCart(() => {
+      resolve();
+    })
+  })
+
+)).then(() => {
+    renderLeftSideCheckout();
+  });
+*/
+
+
+/*
+loadProducts(() => {
+  cart.loadCart(() => {
+    renderLeftSideCheckout();
+    });
+  
+});
+*/
+
 
 function renderLeftSideCheckout() {
   const today = dayjs();
