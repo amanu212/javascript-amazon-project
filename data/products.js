@@ -54,6 +54,31 @@
   console.log(date.toLocaleTimeString())
   */
   export let products = [];
+
+  export function loadProductsFetch() {
+      const promise = fetch('https://supersimplebackend.dev/products').then((iAM) => {
+        return iAM.json();
+      }).then((productsData) => {
+        products = productsData.map((productDetails) => {
+          if(productDetails.type === "clothing") {
+            return new Clothing(productDetails);
+          }
+          else {
+            return new Product(productDetails);
+          }
+      }
+  )}
+  )
+
+  return promise;
+};
+
+
+  loadProductsFetch().then(() => {
+    console.log('next step');
+  });
+
+
   export function loadProducts(fun) {
   const xhr = new XMLHttpRequest();
   
@@ -65,8 +90,9 @@
     else {
       return new Product(productDetails);
     }
-  });;
-    //console.log(products);
+    
+  });
+    console.log(products);
     fun();  //waits for the products array to load from the backend before calling the function passed in.
   });
 
@@ -77,8 +103,8 @@
   //loadProducts();
 
   
-  /*
-  export const products = [
+  
+ /* export const products = [
     {
       id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
       image: "images/products/athletic-cotton-socks-6-pairs.jpg",

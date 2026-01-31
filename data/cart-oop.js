@@ -19,9 +19,9 @@ function Cart(localStorageKey) {
     },
 
     cartAdd(productId) {
-    const quantitySelector = document.querySelector(`.js-item-quantity-selector-${productId}`);
-    const selectedQuantity= Number(quantitySelector.value);
-    let matchingItem;
+      const quantitySelector = document.querySelector(`.js-item-quantity-selector-${productId}`);
+      const selectedQuantity= Number(quantitySelector.value);
+      let matchingItem;
 
       this.cartItems.forEach((item) => {
         if(productId === item.productId) {
@@ -69,7 +69,7 @@ function Cart(localStorageKey) {
     localStorage.setItem(localStorageKey, JSON.stringify(this.cartItems));
     }
 
-}
+  }
   cart.cartLoader();
   return cart;
 }

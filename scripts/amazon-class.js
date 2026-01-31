@@ -80,7 +80,7 @@ function renderProductsGrid() {
 
 
 
-  const cartShow = () => {
+    const cartShow = () => {
 
       let totalQuantity = 0;
       cart.cartItems.forEach((item) => {
@@ -90,7 +90,7 @@ function renderProductsGrid() {
       localStorage.setItem('cartQuantity', JSON.stringify(totalQuantity)); 
       const cartQuantityIdentifier = document.querySelector('.js-cart-quantity')
       cartQuantityIdentifier.innerHTML = totalQuantity;
-      }
+    }
       
 
 

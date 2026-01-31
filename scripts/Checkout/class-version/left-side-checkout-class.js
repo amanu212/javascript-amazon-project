@@ -1,6 +1,6 @@
 import '../../../data/cart-class.js';
 import {cart } from '../../../data/cart-class.js';
-import { loadProducts, products } from '../../../data/products.js';
+import { loadProducts, loadProductsFetch, products } from '../../../data/products.js';
 import { deliveryOptions } from '../../../data/deliveryOptions.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
@@ -8,12 +8,9 @@ import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { orderSummaryRender } from './right-side-checkout-class.js';
 
 
+
 Promise.all([
-  new Promise((resolve) => {
-    loadProducts(() => {
-      resolve();
-    });
-  }),
+  loadProductsFetch(),
   new Promise((resolve) => {
     cart.loadCart(() => {
       resolve();
@@ -25,23 +22,22 @@ Promise.all([
 
 
 /*
-new Promise((resolve) => {
-  loadProducts(() => {
-    resolve();
-  });
-
-  }).then((
   new Promise((resolve) => {
-    cart.loadCart(() => {
+    loadProducts(() => {
       resolve();
+    });
+
+    }).then((
+    new Promise((resolve) => {
+      cart.loadCart(() => {
+        resolve();
+      })
     })
-  })
 
-)).then(() => {
-    renderLeftSideCheckout();
-  });
+  )).then(() => {
+      renderLeftSideCheckout();
+    });
 */
-
 
 /*
 loadProducts(() => {
